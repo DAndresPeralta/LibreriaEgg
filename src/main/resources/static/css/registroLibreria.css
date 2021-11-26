@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&family=Roboto&display=swap');
+
+body{
+    background:url(biblio.jpg);
+    background-attachment: scroll;
+}
+
+.gris{
+    background: rgba(0, 0, 0, 0.700);
+}
+
+#navbar1{
+    margin-left: auto;
+}
+
+#navbar2{
+    margin-left: 81%;
+
+}
+
+#form1{
+    padding-top: 5%;
+    color: rgb(0, 0, 0);
+    box-sizing: border-box;
+}
+
+#msg1{
+    padding-top: 60px;
+}
+
+.container7{
+  border: 0;
+  outline: 0;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.199);
+  color: black;
+  position: relative;
+  font-family: 'Outfit';
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 2em;
+      
+}
+
+.boton{
+  padding: 0 16px;  
+  background-color: gold;
+  color: black;
+  height: 36px;
+  line-height: 1rem;
+  font-family: 'Outfit';
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  border: none;
+ 
+}
+
+.boton:hover, .boton:focus {
+    background-color: rgb(206, 175, 0);
+  }
+  
+.boton:active {  
+    background-color: rgb(206, 175, 0);
+}

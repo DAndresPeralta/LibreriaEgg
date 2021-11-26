@@ -1,0 +1,16 @@
+body{
+    background: url(biblio.jpg) no-repeat center top;
+}
+
+.gris{
+    background-color: rgba(0, 0, 0, 0.199);
+}
+
+#volver{
+    margin-left: 1020px;
+}
+
+#form1{
+    margin-right: 15%;
+    margin-top: 5%;
+}
