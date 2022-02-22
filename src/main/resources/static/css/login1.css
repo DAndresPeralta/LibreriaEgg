@@ -38,8 +38,8 @@ body{
     max-width: 900px;
     margin: 0 auto;
     padding-top: 2em;
-        
-  }
+
+}
 
 .boton{
     padding: 0 16px;  
@@ -57,7 +57,7 @@ body{
 .boton:hover, .boton:focus {
     background-color: rgb(206, 175, 0);
 }
-  
+
 .boton:active {  
     background-color: rgb(206, 175, 0);
 }
@@ -78,7 +78,7 @@ body{
 .botonD:hover, .botonD:focus {
     background-color: rgb(202, 19, 19);
 }
-  
+
 .botonD:active {  
     background-color: rgb(202, 19, 19);
 
@@ -95,14 +95,39 @@ body{
     font-weight: 500;
     letter-spacing: 0.06em;
     border: none;
-     
-    }
+
+}
+
+.botonG:hover, .botonG:focus {
+    background-color: rgb(37, 37, 196);
+}
+
+.botonG:active {  
+    background-color: rgb(37, 37, 196);
+
+}
+
+#textprincipal{
+    margin-left: 50px;
+    margin-right: 650px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 200px;
+    background-color: rgba(0, 0, 0, 0.199);
+    font-family: 'Outfit';
+    color: gold; 
+
+}
+
+#tit{
     
-    .botonG:hover, .botonG:focus {
-        background-color: rgb(37, 37, 196);
-    }
-      
-    .botonG:active {  
-        background-color: rgb(37, 37, 196);
-    
-    }
+/*    margin-left: 800px;
+    margin-bottom: 100px;*/
+    text-align: initial;
+    font-family: 'Outfit';
+    color: whitesmoke;
+    font-size: 50px;
+
+}

@@ -18,6 +18,10 @@ body{
 
 }
 
+#volver2{
+    margin-left: 10%;
+}
+
 #form1{
     padding-top: 5%;
     color: rgb(0, 0, 0);
@@ -29,37 +33,52 @@ body{
 }
 
 .container7{
-  border: 0;
-  outline: 0;
-  font-size: 1rem;
-  background: rgba(0, 0, 0, 0.199);
-  color: black;
-  position: relative;
-  font-family: 'Outfit';
-  max-width: 900px;
-  margin: 0 auto;
-  padding-top: 2em;
-      
+    border: 0;
+    outline: 0;
+    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.199);
+    color: black;
+    position: relative;
+    font-family: 'Outfit';
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 2em;
+
 }
 
 .boton{
-  padding: 0 16px;  
-  background-color: gold;
-  color: black;
-  height: 36px;
-  line-height: 1rem;
-  font-family: 'Outfit';
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  border: none;
- 
+    padding: 0 16px;  
+    background-color: gold;
+    color: black;
+    height: 36px;
+    line-height: 1rem;
+    font-family: 'Outfit';
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    border: none;
+
 }
 
 .boton:hover, .boton:focus {
     background-color: rgb(206, 175, 0);
-  }
-  
+}
+
 .boton:active {  
     background-color: rgb(206, 175, 0);
+}
+
+.container5{
+    border: 0;
+    outline: 0;
+    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.199);
+    color: black;
+    position: relative;
+    font-family: 'Outfit';
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 2em;
+    padding-bottom: 2em;
+
 }

@@ -28,8 +28,12 @@ body{
     margin-left: 205px;
 }
 
+#volver2{
+    margin-left: 290px;
+}
+
 #repodiv{
-    padding-left: 50%;
+    padding-left: 5%;
 }
 
 #text1{
@@ -45,4 +49,22 @@ body{
     color: whitesmoke;    
     
 }
+
+#div1{
+    border: 0;
+    outline: 0;
+    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.199);
+    color: black;
+    position: relative;
+    font-family: 'Outfit';
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 0%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+        
+}
+
+
 

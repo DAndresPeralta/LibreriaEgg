@@ -8,6 +8,7 @@ import com.library.demo.servicios.AutorServicio;
 import com.library.demo.servicios.EditorialServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,7 @@ public class PortalController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
     @GetMapping("/index") // Mapeo. Este método se encarga de mostrar la vista "index" retornada.
     public String index() {
 
@@ -48,6 +50,7 @@ public class PortalController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
     @GetMapping("/registro")
     public String registro(ModelMap model) {
 
@@ -61,12 +64,14 @@ public class PortalController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
     @GetMapping("/registroAutor")
     public String registroAutor() {
 
         return "autorRegistro.html";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
     @GetMapping("/registroEditorial")
     public String registroEditorial() {
 
