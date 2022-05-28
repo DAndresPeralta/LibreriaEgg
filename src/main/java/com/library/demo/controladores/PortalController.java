@@ -84,6 +84,20 @@ public class PortalController {
         return "usuarioRegistro.html";
     }
 
+    @GetMapping("/registroCliente")
+    public String registroCliente() {
+
+        return "clienteRegistro.html";
+
+    }
+
+    @GetMapping("/registroPrestamo")
+    public String registroPrestamo() {
+
+        return "";
+
+    }
+
     @GetMapping("/login2")
     public String login2(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, ModelMap modelo) { //required indica que el parametro no es obligatorio.
 
