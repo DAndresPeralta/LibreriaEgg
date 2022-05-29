@@ -39,10 +39,10 @@ public class LibroController {
 
     @Autowired
     private AutorRepositorio autorRepositorio;
-    
+
     @Autowired
     private AutorServicio autorServicio;
-    
+
     @Autowired
     private EditorialServicio editorialServicio;
 
@@ -143,12 +143,24 @@ public class LibroController {
 
     }
 
-    @PostMapping("/eliminar-libro")
-    public String deshabilitarLibro(@RequestParam String id) {
+    @GetMapping("/eliminar-libro/{id}")
+    public String deshabilitarLibro(ModelMap model, @PathVariable String id) {
 
-        libroServicio.deshabilitarLibro(id);
+        try {
 
-        return "redirect:/libro/consulta";
+            libroServicio.deshabilitarLibro(id);
+            model.put("exito", "Se eliminó correctamente.");
+
+            return "redirect:/libro/consulta";
+
+        } catch (Exception e) {
+
+            model.put("error", "error");
+
+            return "redirect:/libro/consulta";
+
+        }
+
     }
 
 }

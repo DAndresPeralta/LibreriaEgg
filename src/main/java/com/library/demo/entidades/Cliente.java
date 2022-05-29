@@ -26,7 +26,7 @@ public class Cliente {
     private Boolean alta;
     private Integer cantidadPrestamos;
 
-    @OneToMany
+    @OneToMany(mappedBy = "cliente")
     private List<Prestamo> prestamos;
 
     /**

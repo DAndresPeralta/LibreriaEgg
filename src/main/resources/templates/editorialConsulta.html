@@ -65,6 +65,7 @@
 
                             <td>
                                 <a th:href="@{/editorial/editar-editorial(id=__${editorial.id}__)}">Editar</a>
+                                <a th:if="${editorial.alta}" th:href="@{/editorial/eliminar-editorial/__${editorial.id}__}">Eliminar</a>
 
 
                                 <!--                                <a th:href="@{/editorial/eliminar-editorial(id=__${editorial.id}__)}" method="POST">Eliminar</a>-->

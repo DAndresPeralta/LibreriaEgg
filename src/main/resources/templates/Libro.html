@@ -74,6 +74,7 @@
 
                             <td>
                                 <a th:href="@{/libro/editar-libro(id=__${libro.id}__)}">Editar</a>
+                                <a th:if="${libro.alta}" th:href="@{/libro/eliminar-libro/__${libro.id}__}">Eliminar</a>
                                 <!--                                <a th:href="@{/mascota/editar-perfil(id=__${mascota.id}__,accion=Eliminar)}">Eliminar</a>-->
                             </td>
                         </tr>

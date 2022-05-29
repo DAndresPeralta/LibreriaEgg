@@ -82,7 +82,7 @@ public class ClienteController {
 
     }
 
-    @GetMapping("/baja-cliente/{id}")
+    @GetMapping("/baja-cliente/{id}") //Paso como parametro el atributo ID para que el servicio lo busque y lo de de baja.
     public String darBaja(ModelMap model, @PathVariable String id) {
 
         try {

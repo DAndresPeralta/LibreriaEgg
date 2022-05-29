@@ -65,6 +65,7 @@
 
                             <td>
                                 <a th:href="@{/autor/editar-autor(id=__${autor.id}__)}">Editar</a>
+                                <a th:if="${autor.alta}" th:href="@{/autor/eliminar-autor/__${autor.id}__}">Eliminar</a>
 <!--                                <a th:href="@{/autor/eliminar-autor(id=__${autor.id}__)}" method="POST">Eliminar</a>-->
                             </td>
                         </tr>

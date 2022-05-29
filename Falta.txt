@@ -1,0 +1,8 @@
+FALTA:
+
+* Vistas de: Contacto, Proyecto.
+* Ver si puede coexistir el botón eliminar con el boton "dar de baja"
+
+SOLUCIONADO:
+
+* Solucione boton de eliminar en Autor, Libros, Editorial.

@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -90,13 +91,26 @@ public class AutorController {
 
     }
 
-    @PostMapping("/eliminar-autor")
-    public String deshabilitarAutor(ModelMap model, String id) {
+    @GetMapping("/eliminar-autor/{id}") //Paso como parametro el atributo ID para que el servicio lo busque y lo de de baja.
+    public String deshabilitarAutor(ModelMap model, @PathVariable String id) {
 
-        autorServicio.deshabilitarAutor(id);
-        model.put("exito", "Se elimino correctamente.");
+        System.out.println("ACA BIEN");
+        
+        try {
+            
+            
+            autorServicio.deshabilitarAutor(id);
+            model.put("exito", "Se elimino correctamente.");
 
-        return "redirect:/autor/consulta";
+            return "redirect:/autor/consulta";
+
+        } catch (Exception e) {
+
+            model.put("error", "Error.");
+
+            return "redirect:/autor/consulta";
+
+        }
 
     }
 

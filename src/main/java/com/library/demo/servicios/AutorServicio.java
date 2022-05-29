@@ -23,15 +23,32 @@ public class AutorServicio {
     @Transactional() // sirve para evitar el try and catch
     public void crearAutor(String nombre) throws ErrorServicio {
 
+        nombre = nombre.trim();
+
         if (nombre == null || nombre.isEmpty()) {
             throw new ErrorServicio("El nombre no puede ser nulo.");
         }
 
-        Autor a = new Autor();
-        a.setAlta(true);
-        a.setNombre(nombre);
+        //Busca el nombre del autor en la BD.
+        Autor autor = autorRepositorio.buscarAutorPorNombre(nombre);
 
-        autorRepositorio.save(a);
+        //Si el autor no existe, permite guardarlo como nuevo.
+        if (autor == null) {
+
+            Autor a = new Autor();
+            a.setAlta(true);
+            a.setNombre(nombre);
+
+            //Persistimos el Objeto Autor en la BD.
+            autorRepositorio.save(a);
+
+        } else {
+            
+            //Si el autor se encuentra cargado en la BD, muestra el error.
+            throw new ErrorServicio("El autor ya existe.");
+            
+        }
+
     }
 
     @Transactional

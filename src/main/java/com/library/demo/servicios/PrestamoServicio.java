@@ -37,36 +37,47 @@ public class PrestamoServicio {
 
     public void crearPrestamo(String idLibro, String idCliente) throws ErrorServicio {
 
+        //Buscamos el Libro y el Cliente que esta solicitando el libro.
         Libro libro = libroServicio.buscarLibroPorId(idLibro);
-
         Cliente cliente = clienteServicio.buscarClientePorId(idLibro);
 
+        //Si Libro y Cliente existen creamos el objeto Prestamo y seteamos su atributos.
         Prestamo prestamo = new Prestamo();
         prestamo.setFechaEntrega(new Date());
         prestamo.setFechaDevolucion(null);
         prestamo.setAlta(true);
 
+        //Se verifican los datos.
         prestamo = verificarDatos(libro, cliente, prestamo);
 
+        //Persistimos el Objeto Prestamo creado en la BD.
         prestamoRepositorio.save(prestamo);
 
     }
 
-    public void modificarPrestamo(String idPrestamo, String idLibro, String idCliente) {
+    public void modificarPrestamo(String idPrestamo, String idLibro, String idCliente) throws ErrorServicio {
 
+        //Buscamos el nuevo Libro solicitado y el nuevo cliente.
         Libro libroNuevo = libroServicio.buscarLibroPorId(idLibro);
-
         Cliente clienteNuevo = clienteServicio.buscarClientePorId(idLibro);
 
+        //Buscamos en nuestra BD el prestamo existente a modificar por ID.
         Optional<Prestamo> respuesta = prestamoRepositorio.findById(idPrestamo);
 
         if (respuesta.isPresent()) {
 
+            //Guardamos el prestamos a modificar en un nuevo atributo Prestamo.
             Prestamo prestamo = respuesta.get();
 
+            //Guardamos en un nuevo atributo Libro y Cliente los atributos antiguos.
             Libro libroViejo = prestamo.getLibro();
-
             Cliente clienteViejo = prestamo.getCliente();
+            
+            //Verificamos los nuevos atributos y seteamos las modificaciones.
+            prestamo = verificarModificacion(prestamo, libroNuevo, libroViejo, clienteNuevo, clienteViejo);
+            
+            //Persistimos en la BD.
+            prestamoRepositorio.save(prestamo);
 
         }
 
@@ -74,12 +85,15 @@ public class PrestamoServicio {
 
     public void darBaja(String idPrestamo) throws ErrorServicio {
 
+        //Buscamos el Objeto Prestamo a travez de su ID.
         Optional<Prestamo> respuesta = prestamoRepositorio.findById(idPrestamo);
 
+        //Si existe, modificamos los atributos del Prestamo, Cliente y Libro.
         if (respuesta.isPresent()) {
 
             Prestamo prestamo = devolverPrestamo(respuesta.get());
 
+            //Persistimos en la BD.
             prestamoRepositorio.save(prestamo);
 
         } else {

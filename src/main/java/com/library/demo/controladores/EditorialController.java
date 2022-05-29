@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -93,13 +94,23 @@ public class EditorialController {
 
     }
 
-    @PostMapping("/eliminar-editorial")
-    public String deshabilitarEditorial(ModelMap model, String id) {
+    @GetMapping("/eliminar-editorial/{id}")
+    public String deshabilitarEditorial(ModelMap model, @PathVariable String id) {
 
-        editorialServicio.deshabilitarEditorial(id);
-        model.put("exito", "Se elimino correctamente.");
+        try {
 
-        return "redirect:/editorial/consulta";
+            editorialServicio.deshabilitarEditorial(id);
+            model.put("exito", "Se elimino correctamente.");
+
+            return "redirect:/editorial/consulta";
+
+        } catch (Exception e) {
+
+            model.put("error", "error");
+
+            return "redirect:/editorial/consulta";
+
+        }
 
     }
 
