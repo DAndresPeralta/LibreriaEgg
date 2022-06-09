@@ -11,13 +11,13 @@ import org.springframework.stereotype.Repository;
  *
  * @author d.andresperalta
  */
-
 @Repository
-public interface PrestamoRepositorio extends JpaRepository<Prestamo, String>{
-    
+public interface PrestamoRepositorio extends JpaRepository<Prestamo, String> {
+
     @Query("SELECT p FROM Prestamo p WHERE p.cliente.dni = :dni")
     public List<Prestamo> listarPrestamo(@Param("dni") String dni);
-    
-    
-    
+
+    @Query("SELECT p FROM Prestamo p WHERE p.cliente.dni = :dni")
+    public List<Prestamo> buscarPorDniCliente(@Param("dni") Long dni);
+
 }

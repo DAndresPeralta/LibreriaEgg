@@ -2,7 +2,10 @@ FALTA:
 
 * Vistas de: Contacto, Proyecto.
 * Ver si puede coexistir el botón eliminar con el boton "dar de baja"
+* Boton editar prestamo.
 
 SOLUCIONADO:
 
 * Solucione boton de eliminar en Autor, Libros, Editorial.
+* Agregué el item "ejemplares en prestamo" a la vista libro/consulta.
+* Registro y consulta de Préstamo.

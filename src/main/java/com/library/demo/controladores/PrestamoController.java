@@ -10,11 +10,14 @@ import com.library.demo.servicios.PrestamoServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/prestamo")
+@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 public class PrestamoController {
 
     @Autowired
@@ -33,10 +37,34 @@ public class PrestamoController {
     @Autowired
     public ClienteServicio clienteServicio;
 
+//    @GetMapping("nuevo_prestamo")
+//    public String nuevoPrestamo(ModelMap model) {
+//
+//        try {
+//
+//            List<Cliente> cliente = clienteServicio.listarActivos();
+//            model.put("cliente", cliente);
+//
+//            List<Libro> libros = libroServicio.listarLibros();
+//            model.put("libros", libros);
+//
+//        } catch (Exception e) {
+//
+//            model.put("error", "Hubo un error");
+//
+//        }
+//        
+//        return "prestamo/nuevo_prestamo";
+//
+//    }
     @PostMapping("/registrar")
-    public String crearPrestamo(ModelMap model, String idLibro, String idCliente) {
+    public String crearPrestamo(ModelMap model, @RequestParam String idLibro, @RequestParam String idCliente) {
+
+        System.out.println("ENTRO!!!!!!!!!!!!!!!!!!!!!");
 
         try {
+
+            System.out.println("ENTRO TRY!!!!!!!!!");
 
             prestamoServicio.crearPrestamo(idLibro, idCliente);
             model.put("exito", "Prestamo otorgado.");
@@ -47,7 +75,7 @@ public class PrestamoController {
 
         }
 
-        return "";
+        return "prestamoRegistro.html";
 
     }
 
@@ -94,21 +122,22 @@ public class PrestamoController {
 
     }
 
-    @PostMapping("/baja-cliente")
-    public String darBaja(ModelMap model, String idPrestamo) {
+    @GetMapping("/baja-cliente/{idPrestamo}")
+    public String darBaja(ModelMap model, @PathVariable String idPrestamo) {
 
+        System.out.println("ENTRO AL CONTROLLER!!!!!!!!!!!!!");
         try {
 
             prestamoServicio.darBaja(idPrestamo);
             model.put("exito", "Prestamo inhabilitado");
 
-            return "";
+            return "redirect:/prestamo/consulta";
 
         } catch (Exception e) {
 
             model.put("error", "Error.");
 
-            return "";
+            return "redirect:/prestamo/consulta";
 
         }
 
@@ -138,7 +167,7 @@ public class PrestamoController {
 
         try {
 
-            List<Prestamo> prestamos = prestamoServicio.listarPrestamo();
+            List<Prestamo> prestamos = prestamoServicio.listarPrestamosActivos();
             model.put("prestamos", prestamos);
 
         } catch (Exception e) {
@@ -146,7 +175,7 @@ public class PrestamoController {
             model.put("error", "Error.");
         }
 
-        return "";
+        return "prestamoConsulta.html";
 
     }
 

@@ -29,6 +29,10 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Prestamo> prestamos;
 
+    public Cliente() {
+        cantidadPrestamos = 0;
+    }
+
     /**
      * @return the id
      */

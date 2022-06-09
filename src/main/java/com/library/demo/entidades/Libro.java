@@ -27,10 +27,10 @@ public class Libro {
     private Integer ejemplaresRestantes;
     private Boolean alta;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Autor autor;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Editorial editorial;
 
     public Libro() {

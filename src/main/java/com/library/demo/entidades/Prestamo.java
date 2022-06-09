@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -29,7 +30,7 @@ public class Prestamo {
 
     private Boolean alta;
 
-    @ManyToOne
+    @OneToOne
     private Libro libro;
 
     @ManyToOne

@@ -23,6 +23,10 @@ public class ClienteServicio {
 
     public void crearCliente(String nombre, String apellido, String dni, String telefono) {
 
+        nombre = nombre.trim();
+        apellido = apellido.trim();
+        telefono = telefono.trim();
+
         //Creamos el Objeto Cliente.
         Cliente c = new Cliente();
 
@@ -32,6 +36,7 @@ public class ClienteServicio {
         c.setDni(dni);
         c.setTelefono(telefono);
         c.setAlta(true);
+        c.setCantidadPrestamos(0);
 
         //Persistimos el Objeto Cliente con sus atributos en la base de datos.
         clienteRepositorio.save(c);

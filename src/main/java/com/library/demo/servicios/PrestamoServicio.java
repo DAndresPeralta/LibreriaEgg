@@ -7,11 +7,13 @@ import com.library.demo.excepciones.ErrorServicio;
 import com.library.demo.repositorios.ClienteRepositorio;
 import com.library.demo.repositorios.LibroRepositorio;
 import com.library.demo.repositorios.PrestamoRepositorio;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -35,11 +37,13 @@ public class PrestamoServicio {
     @Autowired
     private ClienteServicio clienteServicio;
 
+    @Transactional
     public void crearPrestamo(String idLibro, String idCliente) throws ErrorServicio {
 
         //Buscamos el Libro y el Cliente que esta solicitando el libro.
         Libro libro = libroServicio.buscarLibroPorId(idLibro);
-        Cliente cliente = clienteServicio.buscarClientePorId(idLibro);
+
+        Cliente cliente = clienteServicio.buscarClientePorId(idCliente);
 
         //Si Libro y Cliente existen creamos el objeto Prestamo y seteamos su atributos.
         Prestamo prestamo = new Prestamo();
@@ -55,6 +59,7 @@ public class PrestamoServicio {
 
     }
 
+    @Transactional
     public void modificarPrestamo(String idPrestamo, String idLibro, String idCliente) throws ErrorServicio {
 
         //Buscamos el nuevo Libro solicitado y el nuevo cliente.
@@ -72,10 +77,10 @@ public class PrestamoServicio {
             //Guardamos en un nuevo atributo Libro y Cliente los atributos antiguos.
             Libro libroViejo = prestamo.getLibro();
             Cliente clienteViejo = prestamo.getCliente();
-            
+
             //Verificamos los nuevos atributos y seteamos las modificaciones.
             prestamo = verificarModificacion(prestamo, libroNuevo, libroViejo, clienteNuevo, clienteViejo);
-            
+
             //Persistimos en la BD.
             prestamoRepositorio.save(prestamo);
 
@@ -83,7 +88,10 @@ public class PrestamoServicio {
 
     }
 
+    @Transactional
     public void darBaja(String idPrestamo) throws ErrorServicio {
+
+        System.out.println("ENTRO AL SERVICIO!!!!!!!!1");
 
         //Buscamos el Objeto Prestamo a travez de su ID.
         Optional<Prestamo> respuesta = prestamoRepositorio.findById(idPrestamo);
@@ -103,6 +111,7 @@ public class PrestamoServicio {
 
     }
 
+    @Transactional
     public void darAlta(String idPrestamo) throws ErrorServicio {
 
         Optional<Prestamo> respuesta = prestamoRepositorio.findById(idPrestamo);
@@ -145,6 +154,18 @@ public class PrestamoServicio {
             throw new ErrorServicio("No se han encontrado prestamos vigentes.");
         }
 
+    }
+
+    public List<Prestamo> listarPrestamosActivos() throws ErrorServicio {
+
+        List<Prestamo> todos = listarPrestamo();
+        List<Prestamo> activos = new ArrayList();
+        for (Prestamo prestamo : todos) {
+            if (prestamo.getAlta()) {
+                activos.add(prestamo);
+            }
+        }
+        return activos;
     }
 
     public Prestamo reactivarPrestamo(Prestamo prestamo) {
@@ -259,6 +280,7 @@ public class PrestamoServicio {
 
     }
 
+    @Transactional
     public Prestamo verificarDatos(Libro libro, Cliente cliente, Prestamo prestamo) throws ErrorServicio {
 
         if (libro == null) { //Chequeo que la entidad libro no sea nulo.

@@ -20,7 +20,7 @@ body{
 }
 
 #navbar2{
-    margin-left: 50%;
+    margin-left: 41%;
 
 }
 
@@ -29,7 +29,7 @@ body{
 }
 
 #volver2{
-    margin-left: 375px;
+    margin-left: 478px;
 }
 
 #repodiv{
@@ -53,7 +53,7 @@ body{
 #div1{
     border: 0;
     outline: 0;
-    font-size: 1rem;
+    font-size: 0.8rem;
     background: rgba(0, 0, 0, 0.199);
     color: black;
     position: relative;

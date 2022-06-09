@@ -1,11 +1,15 @@
 package com.library.demo.controladores;
 
 import com.library.demo.entidades.Autor;
+import com.library.demo.entidades.Cliente;
 import com.library.demo.entidades.Editorial;
+import com.library.demo.entidades.Libro;
 import com.library.demo.repositorios.AutorRepositorio;
 import com.library.demo.repositorios.EditorialRepositorio;
 import com.library.demo.servicios.AutorServicio;
+import com.library.demo.servicios.ClienteServicio;
 import com.library.demo.servicios.EditorialServicio;
+import com.library.demo.servicios.LibroServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -34,6 +38,12 @@ public class PortalController {
 
     @Autowired
     private EditorialServicio editorialServicio;
+
+    @Autowired
+    private ClienteServicio clienteServicio;
+
+    @Autowired
+    private LibroServicio libroServicio;
 
     @GetMapping("/") // Mapeo. Este método se encarga de mostrar la vista "index" retornada.
     public String principal() {
@@ -92,9 +102,15 @@ public class PortalController {
     }
 
     @GetMapping("/registroPrestamo")
-    public String registroPrestamo() {
+    public String registroPrestamo(ModelMap model) {
 
-        return "";
+        List<Libro> libros = libroServicio.listarLibros();
+        model.put("libro", libros);
+
+        List<Cliente> clientes = clienteServicio.listarActivos();
+        model.put("cliente", clientes);
+
+        return "prestamoRegistro.html";
 
     }
 
